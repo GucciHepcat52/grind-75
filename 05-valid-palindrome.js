@@ -1,33 +1,17 @@
-function isPalindrome(string) {
-  let lowercaseString = string.toLowerCase();
-  let splitString = lowercaseString.split("");
-  let stringArray = [];
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function (s) {
+  let result = s.replace(/[^A-Za-z0-9]/g, "");
 
-  splitString.forEach((item, index) => {
-    if (isAlphanumeric(item)) {
-      stringArray.push(splitString[index]);
-    }
-  });
-
-  let joinedString = stringArray.join("");
-
-  if (joinedString.length === 0) {
-    return true;
-  }
-
-  let mid = Math.floor(joinedString.length / 2);
-
-  for (let i = 0; i < mid; i++) {
-    if (joinedString[i] !== joinedString[joinedString.length - 1 - i]) {
-      return false;
-    }
+  let start = 0;
+  let end = result.length;
+  while (start != end) {
+    if (result.charAt(start) != result.charAt(end)) return false;
+    start++;
+    end--;
   }
 
   return true;
-}
-
-function isAlphanumeric(element) {
-  return /^[a-zA-Z0-9]+$/.test(element);
-}
-
-isPalindrome("A man, is a person");
+};

@@ -3,22 +3,43 @@ function isAnagram(s, t) {
     return false;
   }
 
-  var freq = new Array(26).fill(0);
-  for (var i = 0; i < s.length; i++) {
-    console.log(freq);
-    freq[s.charCodeAt(i) - "a".charCodeAt(0)]++;
-    console.log(freq);
-    freq[t.charCodeAt(i) - "a".charCodeAt(0)]--;
-    console.log(freq);
-  }
+  let hm = new Map();
+  let hs = new Set();
 
-  for (var i = 0; i < freq.length; i++) {
-    if (freq[i] !== 0) {
-      return false;
+  for (let i = 0; i < s.length; i++) {
+    if (hm.has(s[i])) {
+      hm.set(s[i], hm.get(s[i]) + 1);
+    } else {
+      hm.set(s[i], 1);
     }
   }
 
+  for (let key of hm) {
+    if (hs.has(hm.get(key))) return false;
+    else {
+      hs.add(hm.get(key));
+    }
+  }
+
+  console.log(hm);
+  console.log(hs);
   return true;
+  // var freq = new Array(26).fill(0);
+  // for (var i = 0; i < s.length; i++) {
+  //   console.log(freq);
+  //   freq[s.charCodeAt(i) - "a".charCodeAt(0)]++;
+  //   console.log(freq);
+  //   freq[t.charCodeAt(i) - "a".charCodeAt(0)]--;
+  //   console.log(freq);
+  // }
+
+  // for (var i = 0; i < freq.length; i++) {
+  //   if (freq[i] !== 0) {
+  //     return false;
+  //   }
+  // }
+
+  // return true;
 
   // ---------- THE COMMENTED CODE BELOW ALSO WORKS ---------- //
 
