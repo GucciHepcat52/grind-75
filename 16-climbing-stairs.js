@@ -17,7 +17,7 @@ function climbStairs(n) {
     secondStep = thirdStep;
   }
 
-  return thirdStep;
+  console.log(thirdStep);
 }
 
 climbStairs(10);
