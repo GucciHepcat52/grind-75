@@ -13,30 +13,30 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function (list1, list2) {
-  if (list1.val == null && list2.val == null) return ListNode();
-  if (list1.val == null) return list2;
-  if (list2.val == null) return list1;
+  if (list1 == null && list2 == null) return null;
+  if (list1 == null) return list2;
+  if (list2 == null) return list1;
 
   let head = new ListNode(0);
-  let pointer = head.next;
+  let pointer = head;
 
   while (list1 !== null && list2 !== null) {
     if (list1.val < list2.val) {
-      pointer = list1;
+      pointer.next = list1;
       list1 = list1.next;
     } else {
-      pointer = list2;
+      pointer.next = list2;
       list2 = list2.next;
     }
     pointer = pointer.next;
   }
 
   if (list1 == null) {
-    pointer = list2;
+    pointer.next = list2;
   }
 
   if (list2 == null) {
-    pointer = list1;
+    pointer.next = list1;
   }
 
   return head.next;
